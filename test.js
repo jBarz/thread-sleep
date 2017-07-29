@@ -3,6 +3,9 @@
 var assert = require('assert');
 var sleep = require('./');
 
+var margin = 100;
+if (process.platform === 'os390')
+  margin = 150;
 
 try {
   sleep('string');
@@ -34,7 +37,7 @@ var res = sleep(1000);
 var end = Date.now();
 console.log('Time as returned by sleep():', res);
 console.log('Time counted on our own:    ', end - start);
-assert(Math.abs(1000 - res) < 100);
-assert(Math.abs(1000 - (end - start)) < 100);
+assert(Math.abs(1000 - res) < margin);
+assert(Math.abs(1000 - (end - start)) < margin);
 
 console.log('tests passed');
